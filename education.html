@@ -1,27 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Education</title>
-</head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
 
+        header {
+            background-color: #f2f2f2;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+    <title>Muhammad Mudabir's Portfolio</title>
+</head>
 <body>
     <header>
-        <h1>My Education</h1>
+        <h1>Hey, My Name is Muhammad Mudabir</h1>
+        <p>I am studying BS-Computer Science at FAST NUCES University. Today I am making my DevOps assignment on Github.</p>
     </header>
 
-    <section id="education-list">
-        <!-- Education details will be dynamically added here -->
+    <nav>
+        <ul>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#education">Education</a></li>
+        </ul>
+    </nav>
+
+    <section id="projects">
+        <header>
+            <h1>My Projects</h1>
+            <label for="filter">Filter by Technology:</label>
+            <input type="text" id="filter" oninput="filterProjects()">
+        </header>
+
+        <div id="project-list">
+            <!-- Project details will be dynamically added here -->
+        </div>
+    </section>
+
+    <section id="education">
+        <header>
+            <h1>My Education</h1>
+        </header>
+
+        <div id="education-list">
+            <!-- Education details will be dynamically added here -->
+        </div>
     </section>
 
     <footer>
         <p>&copy; 2023 Muhammad Mudabir</p>
     </footer>
 
-    <script src="education.js"></script>
-</body>
+    <script>
+        // Sample data for projects (replace it with your actual projects)
+        const projectsData = [
+            { name: "Project 1", technology: "C#" },
+            { name: "Project 2", technology: "Java" },
+            { name: "Project 3", technology: "Node.js" },
+            // Add more projects as needed
+        ];
 
+        // Function to filter projects based on input
+        function filterProjects() {
+            const filterInput = document.getElementById("filter").value.toLowerCase();
+            const projectList = document.getElementById("project-list");
+            projectList.innerHTML = ""; // Clear previous list
+
+            // Filter and display projects
+            projectsData.forEach(project => {
+                if (project.technology.toLowerCase().includes(filterInput)) {
+                    const projectItem = document.createElement("p");
+                    projectItem.textContent = `${project.name} - ${project.technology}`;
+                    projectList.appendChild(projectItem);
+                }
+            });
+        }
+
+        // Sample data for education (replace it with your actual education details)
+        const educationData = [
+            { course: "Course 1", grade: "A" },
+            { course: "Course 2", grade: "B" },
+            { course: "Course 3", grade: "A+" },
+            // Add more courses as needed
+        ];
+
+        // Function to display education details
+        function displayEducation() {
+            const educationList = document.getElementById("education-list");
+
+            // Display education details
+            educationData.forEach(course => {
+                const courseItem = document.createElement("p");
+                courseItem.textContent = `${course.course} - Grade: ${course.grade}`;
+                educationList.appendChild(courseItem);
+            });
+        }
+
+        // Initial load of education details
+        displayEducation();
+    </script>
+</body>
 </html>
